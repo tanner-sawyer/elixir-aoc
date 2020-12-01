@@ -25,26 +25,10 @@ defmodule Day1 do
 
   def main_2(search) do
     input()
-    |> find_numbers_2(search)
+    |> find_numbers(search)
   end
 
   def find_numbers(arr, num) do
-    numbers = []
-    arr
-    |> Enum.each(fn x ->
-      arr
-      |> Enum.find(fn y -> 
-        if (x + y) < num do
-          if(num - x - y in arr) do
-            numbers = [x, y, num - x - y]
-          end
-        end
-      end)
-    end)
-    numbers
-  end
-
-  def find_numbers_2(arr, num) do
     arr
     |> Enum.reduce_while([], fn x, acc -> 
       arr
