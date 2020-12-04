@@ -15,19 +15,11 @@ defmodule Day3 do
 
   def tree_collision(row, index) do
     path_location = index * 3
-    if(path_location >= String.length(row)) do
+    if (path_location >= String.length(row)) do
       location = rem(path_location, String.length(row))
-      if String.at(row, location) == "#" do
-        true
-      else
-        false
-      end
+      String.at(row, location) == "#"
     else
-      if String.at(row, path_location) == "#" do
-        true
-      else  
-        false
-      end
+      String.at(row, path_location) == "#"
     end
   end
   
@@ -68,17 +60,9 @@ defmodule Day3 do
     path_location = (index) * right
     if(path_location >= String.length(row)) do
       location = rem(path_location, String.length(row))
-      if String.at(row, location) == "#" do
-        true
-      else
-        false
-      end
+      String.at(row, location) == "#"
     else
-      if String.at(row, path_location) == "#" do
-        true
-      else  
-        false
-      end
+      String.at(row, path_location) == "#"
     end
   end
 
