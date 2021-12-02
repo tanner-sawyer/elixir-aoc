@@ -1,5 +1,4 @@
-defmodule Day1 do
-
+defmodule AdventOfCode21.Day1 do
 
 #  Better answers
 
@@ -63,39 +62,35 @@ defmodule Day1 do
 
   def part_2 do
     Map.put(%{ count: 0 }, :list, FileReader.get_file(1, false) |> Enum.map(&String.to_integer/1))
-    |> slideCompare(nil, nil, nil, nil)
+    |> slideCompare(nil, nil, nil)
   end
 
   
-  def slideCompare(data = %{ list: [] }, a, b, c, d) do # over
-    if (b + c + d > a + b + c) do
-      data.count + 1
-    else
-      data.count
-    end
+  def slideCompare(data = %{ list: [] }, _a, _b, _c) do # over
+    data.count
   end
 
-  def slideCompare(data = %{ list: [h | t] }, a, b, c, d) when a == nil or b == nil or c == nil or d == nil do # over
+  def slideCompare(data = %{ list: [h | t] }, a, b, c) when a == nil or b == nil or c == nil or h == nil do # over
     slideCompare(%{
       data |
       list: t
-    }, h, a, b, c)
+    }, h, a, b)
   end
 
-  def slideCompare(data = %{ list: [h | t] }, a, b, c, d) when (b + c + d) >= (a + b + c) do
+  def slideCompare(data = %{ list: [h | t] }, a, b, c) when (b + c + h) > (a + b + c) do
     slideCompare(%{
       data |
       count: data.count + 1,
       list: t
-    }, h, a, b, c)
+    }, h, a, b)
   end
 
 
-  def slideCompare(data = %{ list: [h | t] }, a, b, c, d) when (b + c + d) < (a + b + c) do
+  def slideCompare(data = %{ list: [h | t] }, a, b, c) when (b + c + h) < (a + b + c) do
     slideCompare(%{
       data |
       list: t
-    }, h, a, b, c)
+    }, h, a, b)
   end
 
 end
